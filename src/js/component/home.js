@@ -4,21 +4,52 @@ import React from "react";
 import rigoImage from "../../img/rigo-baby.jpg";
 
 //create your first component
-export function Home() {
-	return (
-		<div className="text-center mt-5">
-			<h1>Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
-	);
+export class Home extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			todos: []
+		};
+	}
+
+	render() {
+		let addTask = value => {
+			if (value.keyCode == 13) {
+				this.setState({
+					todos: [...this.state.todos, value.target.value]
+				});
+			}
+		};
+
+		let deleteTask = value => {
+			this.state.todos.map(element => {
+				if (element != value.target.value) {
+					this.state.todos.splice(element);
+				}
+			});
+			this.setState({ todos: [...this.state.todos] });
+		};
+
+		let tasksToRender = this.state.todos.map(task => {
+			return (
+				<li key={task}>
+					<div className="view">
+						<label>{task}</label>
+						<button
+							onClick={() => deleteTask(event)}
+							className="destroy"
+							value="Destroy">
+							x
+						</button>
+					</div>
+				</li>
+			);
+		});
+		return (
+			<div>
+				<input onKeyDown={event => addTask(event)} />
+				<ul>{tasksToRender}</ul>
+			</div>
+		);
+	}
 }
