@@ -21,13 +21,10 @@ export class Home extends React.Component {
 			}
 		};
 
-		let deleteTask = value => {
-			this.state.todos.map(element => {
-				if (element != value.target.value) {
-					this.state.todos.splice(element);
-				}
+		let removeItem = value => {
+			this.setState({
+				todos: this.state.todos.filter(element => element != value)
 			});
-			this.setState({ todos: [...this.state.todos] });
 		};
 
 		let tasksToRender = this.state.todos.map(task => {
@@ -36,7 +33,7 @@ export class Home extends React.Component {
 					<div className="view">
 						<label>{task}</label>
 						<button
-							onClick={() => deleteTask(event)}
+							onClick={() => removeItem(task)}
 							className="destroy"
 							value="Destroy">
 							x
