@@ -50,7 +50,9 @@ export class Home extends React.Component {
 					onKeyDown={event => addTask(event)}
 				/>
 				<ul>{tasksToRender}</ul>
-				<p>You have {this.state.todos.length} things to do!</p>
+				<h3 className="text-center">
+					You have {this.state.todos.length} things to do!
+				</h3>
 			</div>
 		);
 	}
