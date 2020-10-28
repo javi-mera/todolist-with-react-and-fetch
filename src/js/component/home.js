@@ -1,8 +1,5 @@
 import React from "react";
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
-
 //create your first component
 export class Home extends React.Component {
 	constructor() {
@@ -29,23 +26,31 @@ export class Home extends React.Component {
 
 		let tasksToRender = this.state.todos.map(task => {
 			return (
-				<li key={task}>
-					<div className="view">
-						<label>{task}</label>
-						<button
-							onClick={() => removeItem(task)}
-							className="destroy"
-							value="Destroy">
-							x
-						</button>
+				<li
+					className="list-group-item col justify-content-between"
+					key={task}>
+					<div className="row justify-content-between">
+						<label className="col-11">{task}</label>
+						<div className="col-1">
+							<button
+								onClick={() => removeItem(task)}
+								className=""
+								value="">
+								x
+							</button>
+						</div>
 					</div>
 				</li>
 			);
 		});
 		return (
 			<div>
-				<input onKeyDown={event => addTask(event)} />
+				<input
+					placeholder="What needs to be done?"
+					onKeyDown={event => addTask(event)}
+				/>
 				<ul>{tasksToRender}</ul>
+				<p>You have {this.state.todos.length} things to do!</p>
 			</div>
 		);
 	}
