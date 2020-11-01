@@ -41,7 +41,6 @@ li {
     padding-left: 9rem;
 }
 input {
-    -webkit-writing-mode: horizontal-tb !important;
     text-rendering: auto;
     color: -internal-light-dark(black, white);
     letter-spacing: normal;
@@ -57,7 +56,7 @@ input {
     cursor: text;
     margin: 0em;
     /* font: 400 13.3333px Arial; */
-    width: 100%;
+    width: 480px;
     border-width: 2px;
     border-style: inset;
     border-color: -internal-light-dark(#767676, #858585);
